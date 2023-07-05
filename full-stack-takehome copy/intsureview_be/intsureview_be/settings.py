@@ -29,8 +29,12 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+]
 
 INSTALLED_APPS = [
+    "intsureview_be",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
