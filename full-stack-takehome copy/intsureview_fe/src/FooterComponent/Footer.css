@@ -1,0 +1,7 @@
+.footerStyle{
+    display: inline-flex;
+}
+
+.footerItem{
+    margin: 10px;
+}

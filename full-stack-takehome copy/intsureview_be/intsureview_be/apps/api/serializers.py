@@ -1,4 +1,5 @@
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
+from intsureview_be.apps.models import FormEntry
 from rest_framework import serializers
 
 
@@ -7,8 +8,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = User
         fields = ["url", "username", "email", "groups"]
 
-
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
+class FormEntrySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Group
-        fields = ["url", "name"]
+        model = FormEntry
+        fields = '__all__'

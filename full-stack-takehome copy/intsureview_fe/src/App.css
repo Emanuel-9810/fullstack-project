@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+.footer{
+  position:absolute;
+  left:0;
+  bottom:0;
+  background-color: rgb(157, 178, 218);
+  right:0;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

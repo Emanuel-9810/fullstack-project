@@ -1,0 +1,22 @@
+.form {
+    display: inline-block;
+}
+
+.formInput{
+    margin-top: 20px;
+}
+
+.label{
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.formInputSelect{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.moviesInput{
+    width: 300px;
+    height: 25px;
+}
