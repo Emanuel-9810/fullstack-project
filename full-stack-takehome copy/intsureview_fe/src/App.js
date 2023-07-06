@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { Header } from './HeaderComponent/Header';
 import { Form } from './FormComponents/FormPage';

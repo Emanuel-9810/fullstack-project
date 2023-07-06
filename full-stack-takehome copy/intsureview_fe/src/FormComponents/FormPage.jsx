@@ -3,47 +3,57 @@ import "./FormPage.css";
 import React, { useState } from "react";
 import axios from "axios"
 
+//Set options list for the user selection
 const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
+  { value: "yes", label: "yes" },
+  { value: "no", label: "no" },
 ];
 
 export const Form = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    favoriteAnimal: "",
-    favoriteMovies: "",
-    favoriteIceCreamFlavor: null,
+    favorite_animal: "",
+    favorite_movies: "",
+    favorite_ice_cream_flavor: null,
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData)
+    console.log(formData);
 
     try {
-      await axios.post("/form/", formData);
+      await axios.post("http://localhost:8000/form/", formData);
       console.log("Form submitted successfully!");
       // Reset the form
       setFormData({
         name: "",
         email: "",
-        favoriteAnimal: "",
-        favoriteMovies: "",
-        favoriteIceCreamFlavor: null,
+        favorite_animal: "",
+        favorite_movies: "",
+        favorite_ice_cream_flavor: null,
       });
     } catch (error) {
       console.error("Error submitting form:", error);
     }
   };
 
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  //Handle and validate changes of input
+  function handleChange(evt) {
+    if(evt!=null){
+      const value = evt.target.value;
+      setFormData({
+        ...formData,
+        [evt.target.name]: value
+      });
+    }
+  }
 
+  //Handle and validate changes of selection
   const handleSelectChange = (selectedOption) => {
-    setFormData({ ...formData, favoriteIceCreamFlavor: selectedOption });
+    if(selectedOption!=null){
+      setFormData({ ...formData, favorite_ice_cream_flavor: selectedOption.value });
+    }
   };
 
   return (
@@ -54,10 +64,9 @@ export const Form = () => {
         <input
           type="text"
           placeholder="Name"
-          id="test"
           name="name"
           defaultValue={formData.name}
-          onChange={handleInputChange}
+          onChange={handleChange}
         />
       </div>
 
@@ -67,10 +76,9 @@ export const Form = () => {
         <input
           type="email"
           placeholder="email@email.com"
-          id="test"
-          name="name"
+          name="email"
           defaultValue={formData.email}
-          onChange={handleInputChange}
+          onChange={handleChange}
         />
       </div>
 
@@ -79,9 +87,9 @@ export const Form = () => {
         <br></br>
         <input type="text"
           placeholder="Lion"
-          name="name"
-          defaultValue={formData.favoriteAnimal}
-          onChange={handleInputChange}
+          name="favorite_animal"
+          defaultValue={formData.favorite_animal}
+          onChange={handleChange}
         />
       </div>
 
@@ -92,22 +100,22 @@ export const Form = () => {
           type="textarea"
           placeholder="Toy Story"
           className="moviesInput"
-          defaultValue={formData.favoriteMovies}
-          onChange={handleInputChange}  
+          name="favorite_movies"
+          defaultValue={formData.favorite_movies}
+          onChange={handleChange}  
         />
       </div>
 
       <div className="formInputSelect">
-        <label className="label">Favorite Ice Cream Flavor</label>
+        <label className="label">Do you have a favorite ice cream flavor?</label>
         <br></br>
         <Select
           options={options} 
-          defaultValue={formData.favoriteIceCreamFlavor}
+          defaultValue={formData.favorite_ice_cream_flavor}
           onChange={handleSelectChange}
         />
       </div>
       <button type="submit">Submit</button>
     </form>
-    
   );
 };

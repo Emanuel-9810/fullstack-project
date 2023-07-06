@@ -7,7 +7,7 @@ export const Footer = () => {
                 My Fake Company &copy;
             </p>
             <p className="footerItem">
-                Contact
+                Email: Emanaguirre59@gmail.com
             </p>
         </div>
     );
